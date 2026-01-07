@@ -8,16 +8,14 @@
         /* --- CSS STYLES --- */
         :root {
             --primary: #d4ff00; /* Neon Green */
-            --dark: #1a1a1a;
-            --light: #f4f4f4;
-            --gray: #333;
+            --light: #ffffff;
+            --overlay: rgba(0, 0, 0, 0.75); /* Darkens images so text is readable */
         }
         
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: var(--dark);
             color: var(--light);
             line-height: 1.6;
         }
@@ -28,7 +26,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             position: fixed;
             width: 90%;
             top: 0;
@@ -44,56 +42,85 @@
         }
         .nav-links a:hover { color: var(--primary); }
 
-        /* Hero Section */
-        header {
-            height: 100vh;
+        /* --- BACKGROUND IMAGES SETUP --- */
+        /* This creates the "Parallax" fixed background effect */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 100px 10%;
+            min-height: 60vh; /* Minimum height per section */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
         }
-        h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; }
-        p.subtitle { font-size: 1.5rem; margin-bottom: 30px; }
+
+        /* 1. HERO IMAGE (Gym/Action) */
+        .bg-hero {
+            height: 100vh;
+            /* CHANGE IMAGE LINK BELOW */
+            background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        /* 2. ABOUT IMAGE (Running/Outdoors) */
+        .bg-about {
+            /* CHANGE IMAGE LINK BELOW */
+            background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        /* 3. SERVICES IMAGE (Weights/Dumbbells) */
+        .bg-services {
+            /* CHANGE IMAGE LINK BELOW */
+            background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        /* 4. CONTACT IMAGE (Dark/Focus) */
+        .bg-contact {
+            /* CHANGE IMAGE LINK BELOW */
+            background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1920&auto=format&fit=crop');
+        }
+
+        /* Typography & Elements */
+        h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; text-shadow: 2px 2px 4px #000; }
+        h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 40px; text-shadow: 2px 2px 4px #000; }
+        p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; text-shadow: 1px 1px 2px #000; }
         
         .btn {
             background-color: var(--primary);
-            color: var(--dark);
+            color: #000;
             padding: 12px 30px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 5px;
             text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
             transition: transform 0.2s;
         }
         .btn:hover { transform: scale(1.05); }
 
-        /* Sections */
-        section { padding: 80px 10%; }
-        h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 40px; text-align: center; }
-
-        /* Services Grid */
+        /* Services Cards */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
+            width: 100%;
         }
         .card {
-            background: var(--gray);
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
             padding: 30px;
+            border: 1px solid var(--primary);
             border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
+            backdrop-filter: blur(5px); /* Blurs the image behind the card */
         }
-        .card:hover { transform: translateY(-10px); }
 
         /* Contact Form */
         form {
+            width: 100%;
             max-width: 600px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -113,10 +140,10 @@
             font-size: 1rem;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             nav { flex-direction: column; gap: 10px; }
+            .parallax-section { background-attachment: scroll; } /* Better performance on mobile */
         }
     </style>
 </head>
@@ -131,22 +158,22 @@
         </div>
     </nav>
 
-    <header>
+    <header class="parallax-section bg-hero">
         <h1>Unleash Your Potential</h1>
-        <p class="subtitle">Personal Training & Nutrition Plans</p>
+        <p>Personal Training & Nutrition Plans Designed For You</p>
         <a href="#contact" class="btn">Start Your Journey</a>
     </header>
 
-    <section id="about">
+    <section id="about" class="parallax-section bg-about">
         <h2>About The Trainer</h2>
-        <p style="text-align: center; max-width: 700px; margin: 0 auto;">
+        <p>
             I am a certified personal trainer dedicated to helping you achieve your physical best. 
             Whether you want to build muscle, lose weight, or improve endurance, I create 
             customized plans that fit your lifestyle.
         </p>
     </section>
 
-    <section id="services">
+    <section id="services" class="parallax-section bg-services">
         <h2>My Services</h2>
         <div class="services-grid">
             <div class="card">
@@ -164,7 +191,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="parallax-section bg-contact">
         <h2>Get In Touch</h2>
         <form id="contactForm">
             <input type="text" placeholder="Your Name" required>

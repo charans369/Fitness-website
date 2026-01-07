@@ -43,14 +43,13 @@
         .nav-links a:hover { color: var(--primary); }
 
         /* --- BACKGROUND IMAGES SETUP --- */
-        /* This creates the "Parallax" fixed background effect */
         .parallax-section {
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             padding: 100px 10%;
-            min-height: 60vh; /* Minimum height per section */
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -58,28 +57,24 @@
             text-align: center;
         }
 
-        /* 1. HERO IMAGE (Gym/Action) */
+        /* 1. HERO IMAGE */
         .bg-hero {
             height: 100vh;
-            /* CHANGE IMAGE LINK BELOW */
             background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop');
         }
 
-        /* 2. ABOUT IMAGE (Running/Outdoors) */
+        /* 2. ABOUT IMAGE */
         .bg-about {
-            /* CHANGE IMAGE LINK BELOW */
             background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1920&auto=format&fit=crop');
         }
 
-        /* 3. SERVICES IMAGE (Weights/Dumbbells) */
+        /* 3. SERVICES IMAGE */
         .bg-services {
-            /* CHANGE IMAGE LINK BELOW */
             background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1920&auto=format&fit=crop');
         }
 
-        /* 4. CONTACT IMAGE (Dark/Focus) */
+        /* 4. CONTACT IMAGE */
         .bg-contact {
-            /* CHANGE IMAGE LINK BELOW */
             background-image: linear-gradient(var(--overlay), var(--overlay)), url('https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=1920&auto=format&fit=crop');
         }
 
@@ -110,40 +105,32 @@
             width: 100%;
         }
         .card {
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+            background: rgba(0, 0, 0, 0.6);
             padding: 30px;
             border: 1px solid var(--primary);
             border-radius: 10px;
-            backdrop-filter: blur(5px); /* Blurs the image behind the card */
+            backdrop-filter: blur(5px);
         }
 
-        /* Contact Form */
-        form {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        input, textarea {
-            padding: 15px;
-            border-radius: 5px;
-            border: none;
-            font-family: inherit;
-        }
-        button {
-            padding: 15px;
-            background-color: var(--primary);
-            border: none;
+        /* New Email Link Style */
+        .email-link {
+            font-size: 2rem;
+            color: var(--primary);
+            text-decoration: none;
             font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
+            border-bottom: 2px solid var(--primary);
+            transition: color 0.3s;
+        }
+        .email-link:hover {
+            color: #fff;
+            border-color: #fff;
         }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
+            .email-link { font-size: 1.5rem; }
             nav { flex-direction: column; gap: 10px; }
-            .parallax-section { background-attachment: scroll; } /* Better performance on mobile */
+            .parallax-section { background-attachment: scroll; }
         }
     </style>
 </head>
@@ -192,21 +179,13 @@
     </section>
 
     <section id="contact" class="parallax-section bg-contact">
-        <h2>Get In Touch</h2>
-        <form id="contactForm">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea rows="5" placeholder="Your Goals..." required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+        <h2>Contact</h2>
+        <p style="margin-bottom: 30px;">
+            Ready to get started? Contact me for more information on pricing and availability.
+        </p>
+        
+        <a href="mailto:info@fitlife.ca" class="email-link">info@fitlife.ca</a>
     </section>
-
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you! I will contact you shortly.');
-        });
-    </script>
 
 </body>
 </html>
